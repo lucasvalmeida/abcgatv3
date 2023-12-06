@@ -113,14 +113,14 @@ void Window::onPaint() {
   // Get location of uniform variables
   auto const viewMatrixLoc{abcg::glGetUniformLocation(m_program, "viewMatrix")};
   auto const projMatrixLoc{abcg::glGetUniformLocation(m_program, "projMatrix")};
-  auto const modelMatrixLoc{
-      abcg::glGetUniformLocation(m_program, "modelMatrix")};
+  auto const modelMatrixLoc{abcg::glGetUniformLocation(m_program, "modelMatrix")};
   auto const colorLoc{abcg::glGetUniformLocation(m_program, "color")};
 
   // Set uniform variables that have the same value for every model
   abcg::glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, &m_viewMatrix[0][0]);
   abcg::glUniformMatrix4fv(projMatrixLoc, 1, GL_FALSE, &m_projMatrix[0][0]);
-  abcg::glUniform4f(colorLoc, 1.0f, 1.0f, 1.0f, 1.0f); // White
+
+  abcg::glUniform4f(colorLoc, 1.0f, 0.0f, 0.0f, 1.0f); // Vermelho
 
   // Render each star
   for (auto &star : m_stars) {
@@ -135,6 +135,8 @@ void Window::onPaint() {
 
     m_model.render();
   }
+
+  abcg::glUniform4f(colorLoc, 0.5f, 0.5f, 0.5f, 1.0f); // Cinza
 
   // Desenha pista:
   pista1.m_position = glm::vec3(0.0f,-10.0f,-30.0f);
@@ -155,6 +157,8 @@ void Window::onPaint() {
 
 // =============================================================================
 
+  abcg::glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f); // Azul
+
   // Desenha carro0:
   pista0.m_position = glm::vec3(0.0f,-0.0f,-90.0f);
   pista0.m_rotationAxis = glm::vec3(0.2f,0.8f,0.3f);
@@ -173,6 +177,8 @@ void Window::onPaint() {
 
 // =============================================================================
 
+  abcg::glUniform4f(colorLoc, 1.0f, 0.0f, 0.0f, 1.0f); // Vermelho
+  
   // Desenha carro1:
   pista1.m_position = glm::vec3(0.0f,-0.0f,-90.0f);
   pista1.m_rotationAxis = glm::vec3(0.2f,0.8f,0.3f);
