@@ -17,6 +17,9 @@ protected:
   void onDestroy() override;
 
 private:
+  std::vector<char const *> m_shaderNames{"normal", "depth"};
+  std::vector<GLuint> m_programs;
+  int m_currentProgramIndex{};
   std::default_random_engine m_randomEngine;
 
   glm::ivec2 m_viewportSize{};
@@ -46,7 +49,7 @@ private:
   Carro carro0;
   Carro carro1;
 
-  std::array<Star, 500> m_stars;
+  std::array<Star, 15> m_stars;
 
   float m_angle{};
   float angulo_carro0{};
